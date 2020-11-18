@@ -5,11 +5,7 @@ const path = require('path');
 
 // codigo ...
 
-// despues de conectarse a la base de datos
-app.use(express.static('public'));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
 
 const express  = require('express');
 const mongoose = require('mongoose');
@@ -38,6 +34,12 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 app.use('/api', require('./api/routes/note'));
+
+// despues de conectarse a la base de datos
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 /** index.js
   * middlewares (antes del listen)
